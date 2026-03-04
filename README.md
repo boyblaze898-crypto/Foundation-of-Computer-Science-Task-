@@ -10,7 +10,6 @@
 ```
 mysql> CREATE TABLE Student ( Studentid INT AUTO_INCREMENT PRIMARY KEY, Studentname VARCHAR(100) NOT NULL, Email VARCHAR
 (100) NOT NULL);
-Query OK, 0 rows affected (0.045 sec)
 ```
 ## Result 
 ```
