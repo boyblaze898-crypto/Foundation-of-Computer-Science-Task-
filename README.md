@@ -54,5 +54,19 @@ mysql> SELECT * FROM Student_data;
 +--------------+-----------+-------------+------------------+-------------+----------+------------+------------+
 10 rows in set (0.003 sec)
 ```
+### Problem of the tables 
+```
+Repeated student data (same student name/email appears in many rows).
+Repeated club data (same club room/mentor repeats for every member).
+Hard to maintain because one change may require updating many rows.
+
+Redundant data: repeated extra info (e.g., same club room repeated).
+Duplicate data: same details appear again in multiple rows (e.g., same student info).
+
+
+Insert anomaly: can’t add a new club unless a student joins it.
+Update anomaly: changing a mentor/room needs updates in many rows.
+Delete anomaly: deleting the last member of a club can remove club info too.
+```
 ### query to create db, table, insert date , show relust
 
