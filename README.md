@@ -67,6 +67,8 @@ Duplicate data: same details appear again in multiple rows (e.g., same student i
 Insert anomaly: can’t add a new club unless a student joins it.
 Update anomaly: changing a mentor/room needs updates in many rows.
 Delete anomaly: deleting the last member of a club can remove club info too.
+
+The table is already in 1NF, so we normalize it into 2NF and 3NF to remove repetition and anomalies. In 2NF, we split the data into separate tables: Students (StudentID, StudentName, Email), Clubs (ClubName, ClubRoom, ClubMentor), and Memberships (StudentID, ClubName, JoinDate). In 3NF, we ensure non-key fields depend only on their own key (e.g., room and mentor stay only in the Clubs table), so updates happen once and the data stays consistent.
 ```
 ### query to create db, table, insert date , show relust
 
