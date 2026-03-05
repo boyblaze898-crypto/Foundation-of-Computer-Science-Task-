@@ -409,3 +409,81 @@ mysql> SELECT
 +-------------+-------------+------------+
 10 rows in set (0.031 sec)
 ```
+### Sql queries for all the operation 
+```
+CREATE TABLE Student_data (
+  MembershipID INT AUTO_INCREMENT PRIMARY KEY,
+  StudentID INT NOT NULL,
+  StudentName VARCHAR(50) NOT NULL,
+  Email VARCHAR(100) NOT NULL,
+  ClubName VARCHAR(50) NOT NULL,
+  ClubRoom VARCHAR(10) NOT NULL,
+  ClubMentor VARCHAR(50) NOT NULL,
+  JoinDate DATE NOT NULL
+);
+
+INSERT INTO Student_data
+(StudentID, StudentName, Email, ClubName, ClubRoom, ClubMentor, JoinDate)
+VALUES
+(1, 'Asha',  'asha@email.com',  'Music Club',  'R101', 'Mr. Raman', '2024-01-10'),
+(2, 'Bikash','bikash@email.com','Sports Club', 'R202', 'Ms. Sita',  '2024-01-12'),
+(1, 'Asha',  'asha@email.com',  'Sports Club', 'R202', 'Ms. Sita',  '2024-01-15'),
+(3, 'Nisha', 'nisha@email.com', 'Music Club',  'R101', 'Mr. Raman', '2024-01-20'),
+(4, 'Rohan', 'rohan@email.com', 'Drama Club',  'R303', 'Mr. Kiran', '2024-01-18'),
+(5, 'Suman', 'suman@email.com', 'Music Club',  'R101', 'Mr. Raman', '2024-01-22'),
+(2, 'Bikash','bikash@email.com','Drama Club',  'R303', 'Mr. Kiran', '2024-01-25'),
+(6, 'Pooja', 'pooja@email.com', 'Sports Club', 'R202', 'Ms. Sita',  '2024-01-27'),
+(3, 'Nisha', 'nisha@email.com', 'Coding Club', 'Lab1', 'Mr. Anil',  '2024-01-28'),
+(7, 'Aman',  'aman@email.com',  'Coding Club', 'Lab1', 'Mr. Anil',  '2024-01-30');
+
+CREATE TABLE Students (
+  StudentID INT PRIMARY KEY,
+  StudentName VARCHAR(50) NOT NULL,
+  Email VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Clubs (
+  ClubName VARCHAR(50) PRIMARY KEY,
+  ClubRoom VARCHAR(10) NOT NULL,
+  ClubMentor VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Memberships (
+  StudentID INT NOT NULL,
+  ClubName VARCHAR(50) NOT NULL,
+  JoinDate DATE NOT NULL,
+  PRIMARY KEY (StudentID, ClubName),
+  FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+  FOREIGN KEY (ClubName) REFERENCES Clubs(ClubName)
+);
+
+INSERT INTO Students (StudentID, StudentName, Email)
+SELECT DISTINCT StudentID, StudentName, Email
+FROM Student_data;
+
+INSERT INTO Clubs (ClubName, ClubRoom, ClubMentor)
+SELECT DISTINCT ClubName, ClubRoom, ClubMentor
+FROM Student_data;
+
+INSERT INTO Memberships (StudentID, ClubName, JoinDate)
+SELECT StudentID, ClubName, JoinDate
+FROM Student_data;
+
+INSERT INTO Students (StudentID, StudentName, Email)
+VALUES (8, 'Rahul Thapa', 'rahul@gmail.com');
+
+INSERT INTO Clubs (ClubName, ClubRoom, ClubMentor)
+VALUES ('Robotics Club', 'R404', 'Mr. Bean');
+
+SELECT * FROM Students;
+SELECT * FROM Clubs;
+
+SELECT 
+  s.StudentName,
+  c.ClubName,
+  m.JoinDate
+FROM Memberships m
+JOIN Students s ON m.StudentID = s.StudentID
+JOIN Clubs c ON m.ClubName = c.ClubName
+ORDER BY s.StudentName, m.JoinDate;
+```
