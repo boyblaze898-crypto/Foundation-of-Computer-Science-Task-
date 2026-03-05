@@ -51,7 +51,6 @@ Insert into membership Values
 (7,'Coding Club','1/30/2024')
 
 
-
 INSERT INTO Student VALUE
 (8, 'Rahul', 'rahul@gmail.com');
 
@@ -59,15 +58,8 @@ INSERT INTO Club VALUES
 ('Robotics Club', 'R404', 'Mr. Bean');
 
 
-
 SELECT * FROM Student;
 SELECT * FROM Club;
-
-
-
-
-
-
 
 
 SELECT StudentName FROM Student;
