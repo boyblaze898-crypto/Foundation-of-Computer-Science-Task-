@@ -337,5 +337,50 @@ mysql> SELECT * FROM Clubs;
 +---------------+----------+------------+
 5 rows in set (0.002 sec)
 ```
+### Display of all the Tables 
+```
+mysql> SELECT * FROM Students;
++-----------+-------------+------------------+
+| StudentID | StudentName | Email            |
++-----------+-------------+------------------+
+|         1 | Asha        | asha@email.com   |
+|         2 | Bikash      | bikash@email.com |
+|         3 | Nisha       | nisha@email.com  |
+|         4 | Rohan       | rohan@email.com  |
+|         5 | Suman       | suman@email.com  |
+|         6 | Pooja       | pooja@email.com  |
+|         7 | Aman        | aman@email.com   |
+|         8 | Rahul Thapa | rahul@gmail.com  |
++-----------+-------------+------------------+
+8 rows in set (0.017 sec)
 
+mysql> SELECT * FROM Clubs;
++---------------+----------+------------+
+| ClubName      | ClubRoom | ClubMentor |
++---------------+----------+------------+
+| Coding Club   | lab1     | Mr. Anil   |
+| Drama Club    | R303     | Mr. Kiran  |
+| Music Club    | R101     | Mr. Raman  |
+| Robotics Club | R404     | Mr. Bean   |
+| Sports Club   | R202     | Ms. Sita   |
++---------------+----------+------------+
+5 rows in set (0.001 sec)
+
+mysql> SELECT * FROM Memberships;
++-----------+-------------+------------+
+| StudentID | ClubName    | JoinDate   |
++-----------+-------------+------------+
+|         1 | Music Club  | 2024-01-10 |
+|         1 | Sports Club | 2024-01-15 |
+|         2 | Drama Club  | 2024-01-25 |
+|         2 | Sports Club | 2024-01-12 |
+|         3 | Coding Club | 2024-01-28 |
+|         3 | Music Club  | 2024-01-20 |
+|         4 | Drama Club  | 2024-01-18 |
+|         5 | Music Club  | 2024-01-22 |
+|         6 | Sports Club | 2024-01-27 |
+|         7 | Coding Club | 2024-01-30 |
++-----------+-------------+------------+
+10 rows in set (0.003 sec)
+```
 
