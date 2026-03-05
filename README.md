@@ -11,6 +11,28 @@ Implement and test the normalized database in MySQL (Docker) using SQL scripts a
 ```
 ## Task Requirements 
 ## Installation Guide 
+```
+1) Install Requirements
+
+Install Docker Desktop for Windows
+
+Make sure Docker is running (Docker icon shows running)
+
+2) Pull MySQL Image
+
+Open CMD and run:
+docker pull mysql:latest
+
+3) Create and Run MySQL Container
+docker run -d --name mysql-db -p 3705:3306 -e MYSQL_ROOT_PASSWORD=root mysql:latest
+
+4) Check the Container
+docker ps
+You should see mysql-db running.
+
+5) Login to MySQL (inside Docker)
+docker exec -it mysql-db mysql -u root -p
+```
 ## Start
 ### CREATE ORIGINAL TALBE 
 ```
