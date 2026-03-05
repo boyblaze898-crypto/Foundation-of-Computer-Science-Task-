@@ -297,5 +297,45 @@ Students 1-to-many Memberships
 Clubs    1-to-many Memberships
 Overall: Students many-to-many Clubs (via Memberships)
 ```
+### Adding New Values And showcasing those values  
+```
+mysql> INSERT INTO Students (StudentID, StudentName, Email)
+    -> VALUES (8, 'Rahul Thapa', 'rahul@gmail.com');
+Query OK, 1 row affected (0.077 sec)
+
+mysql>
+mysql> INSERT INTO Clubs (ClubName, ClubRoom, ClubMentor)
+    -> VALUES ('Robotics Club', 'R404', 'Mr. Bean');
+Query OK, 1 row affected (0.012 sec)
+
+mysql>
+mysql> SELECT * FROM Students;
++-----------+-------------+------------------+
+| StudentID | StudentName | Email            |
++-----------+-------------+------------------+
+|         1 | Asha        | asha@email.com   |
+|         2 | Bikash      | bikash@email.com |
+|         3 | Nisha       | nisha@email.com  |
+|         4 | Rohan       | rohan@email.com  |
+|         5 | Suman       | suman@email.com  |
+|         6 | Pooja       | pooja@email.com  |
+|         7 | Aman        | aman@email.com   |
+|         8 | Rahul Thapa | rahul@gmail.com  |
++-----------+-------------+------------------+
+8 rows in set (0.006 sec)
+
+mysql>
+mysql> SELECT * FROM Clubs;
++---------------+----------+------------+
+| ClubName      | ClubRoom | ClubMentor |
++---------------+----------+------------+
+| Coding Club   | lab1     | Mr. Anil   |
+| Drama Club    | R303     | Mr. Kiran  |
+| Music Club    | R101     | Mr. Raman  |
+| Robotics Club | R404     | Mr. Bean   |
+| Sports Club   | R202     | Ms. Sita   |
++---------------+----------+------------+
+5 rows in set (0.002 sec)
+```
 
 
