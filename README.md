@@ -272,5 +272,30 @@ mysql> SELECT * FROM Memberships;
 +-----------+-------------+------------+
 10 rows in set (0.000 sec)
 ```
+## ER Diagram
+```
++---------------------------+      +---------------------------+
+|          STUDENTS         |      |           CLUBS           |
++---------------------------+      +---------------------------+
+| PK  StudentID             |      | PK  ClubName              |
+|     StudentName           |      |     ClubRoom              |
+|     Email                 |      |     ClubMentor            |
++---------------------------+      +---------------------------+
+            | 1                               1 |
+            |                                   |
+            |                                   |
+            +-----------<  MANY    MANY  >-------+
+                        +-------------------+
+                        |    MEMBERSHIPS    |
+                        +-------------------+
+                        | PK/FK StudentID   |
+                        | PK/FK ClubName    |
+                        |     JoinDate      |
+                        +-------------------+
+
+Students 1-to-many Memberships
+Clubs    1-to-many Memberships
+Overall: Students many-to-many Clubs (via Memberships)
+```
 
 
