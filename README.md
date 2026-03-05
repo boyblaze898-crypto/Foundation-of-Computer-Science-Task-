@@ -3,6 +3,12 @@
 
 ## General Overview for Task 3 
 ## Learning Objective
+```
+Identify data quality issues in the original Student_data table (redundancy, duplicates, and anomalies).
+Normalize the dataset from 1NF → 2NF → 3NF to improve structure and consistency.
+Design an ER-style relational model using primary keys and foreign keys (Students, Clubs, Memberships).
+Implement and test the normalized database in MySQL (Docker) using SQL scripts and verification queries.
+```
 ## Task Requirements 
 ## Installation Guide 
 ## Start
