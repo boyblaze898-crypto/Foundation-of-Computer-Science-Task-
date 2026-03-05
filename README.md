@@ -1,7 +1,11 @@
-## Normalization 
 ### General Definition 
-
-## General Overview for Task 3 
+```
+Database normalization is a process of organizing data into separate related tables to reduce duplication and prevent errors. It ensures each table stores only one type of information and uses primary keys and foreign keys to link tables together. This makes the database more consistent, easier to update, and reduces insert, update, and delete anomalies.
+```
+## General Overview for Task 3
+```
+This project is based on a College Club Membership Management scenario where all student and club details are stored in one table. The task is to first find data problems like repetition and anomalies, then improve the design by normalizing the data from 1NF to 2NF and 3NF by splitting it into Student, Club, and Membership tables. After normalization, an ER diagram is created to show relationships (one student can join many clubs and one club can have many students). Finally, SQL queries are written to insert and display data, and a JOIN query is used to show Student Name, Club Name, and Join Date. The final reflection explains how normalization improves accuracy and why JOINs are needed after splitting tables.
+```
 ## Learning Objective
 ```
 Identify data quality issues in the original Student_data table (redundancy, duplicates, and anomalies).
@@ -263,5 +267,5 @@ mysql> SELECT * FROM Memberships;
 +-----------+-------------+------------+
 10 rows in set (0.000 sec)
 ```
-### query to create db, table, insert date , show relust
+
 
