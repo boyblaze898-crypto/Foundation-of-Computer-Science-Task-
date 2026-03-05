@@ -383,4 +383,29 @@ mysql> SELECT * FROM Memberships;
 +-----------+-------------+------------+
 10 rows in set (0.003 sec)
 ```
-
+### SQl Join Operation
+```
+mysql> SELECT
+    ->   s.StudentName,
+    ->   c.ClubName,
+    ->   m.JoinDate
+    -> FROM Memberships m
+    -> JOIN Students s ON m.StudentID = s.StudentID
+    -> JOIN Clubs c ON m.ClubName = c.ClubName
+    -> ORDER BY s.StudentName, m.JoinDate;
++-------------+-------------+------------+
+| StudentName | ClubName    | JoinDate   |
++-------------+-------------+------------+
+| Aman        | Coding Club | 2024-01-30 |
+| Asha        | Music Club  | 2024-01-10 |
+| Asha        | Sports Club | 2024-01-15 |
+| Bikash      | Sports Club | 2024-01-12 |
+| Bikash      | Drama Club  | 2024-01-25 |
+| Nisha       | Music Club  | 2024-01-20 |
+| Nisha       | Coding Club | 2024-01-28 |
+| Pooja       | Sports Club | 2024-01-27 |
+| Rohan       | Drama Club  | 2024-01-18 |
+| Suman       | Music Club  | 2024-01-22 |
++-------------+-------------+------------+
+10 rows in set (0.031 sec)
+```
