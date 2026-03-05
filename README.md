@@ -70,5 +70,111 @@ Delete anomaly: deleting the last member of a club can remove club info too.
 
 The table is already in 1NF, so we normalize it into 2NF and 3NF to remove repetition and anomalies. In 2NF, we split the data into separate tables: Students (StudentID, StudentName, Email), Clubs (ClubName, ClubRoom, ClubMentor), and Memberships (StudentID, ClubName, JoinDate). In 3NF, we ensure non-key fields depend only on their own key (e.g., room and mentor stay only in the Clubs table), so updates happen once and the data stays consistent.
 ```
+###  Normalization 
+```
+To normalize the table, we split it into 3 tables: Students, Clubs, and Memberships.
+
+
+This makes the database 2NF because student details are stored only once in Students, and club details are stored only once in Clubs.
+
+
+The Memberships table stores the relationship (who joined which club and the join date).
+
+
+Memberships has two foreign keys:
+StudentID → references Students(StudentID)
+ClubName → references Clubs(ClubName)
+This reduces repeated data and avoids insert, update, and delete anomalies.
+```
+### Tables 
+```
+mysql> CREATE TABLE Students (
+    ->   StudentID INT PRIMARY KEY,
+    ->   StudentName VARCHAR(50) NOT NULL,
+    ->   Email VARCHAR(100) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.034 sec)
+
+mysql>
+mysql> CREATE TABLE Clubs (
+    ->   ClubName VARCHAR(50) PRIMARY KEY,
+    ->   ClubRoom VARCHAR(10) NOT NULL,
+    ->   ClubMentor VARCHAR(50) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.041 sec)
+
+mysql>
+mysql> CREATE TABLE Memberships (
+    ->   StudentID INT NOT NULL,
+    ->   ClubName VARCHAR(50) NOT NULL,
+    ->   JoinDate DATE NOT NULL,
+    ->   PRIMARY KEY (StudentID, ClubName),
+    ->   FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    ->   FOREIGN KEY (ClubName) REFERENCES Clubs(ClubName)
+    -> );
+Query OK, 0 rows affected (0.045 sec)
+Value Inster
+mysql> INSERT INTO Students (StudentID, StudentName, Email)
+    -> SELECT DISTINCT StudentID, StudentName, Email
+    -> FROM Student_data;
+Query OK, 7 rows affected (0.012 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> INSERT INTO Clubs (ClubName, ClubRoom, ClubMentor)
+    -> SELECT DISTINCT ClubName, ClubRoom, ClubMentor
+    -> FROM Student_data;
+Query OK, 4 rows affected (0.009 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+mysql> INSERT INTO Memberships (StudentID, ClubName, JoinDate)
+    -> SELECT StudentID, ClubName, STR_TO_DATE(JoinDate, '%Y-%m-%d')
+    -> FROM Student_data;
+Query OK, 10 rows affected (0.008 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+```
+### 2NF Table 
+```
+mysql> SELECT * FROM Students;
++-----------+-------------+------------------+
+| StudentID | StudentName | Email            |
++-----------+-------------+------------------+
+|         1 | Asha        | asha@email.com   |
+|         2 | Bikash      | bikash@email.com |
+|         3 | Nisha       | nisha@email.com  |
+|         4 | Rohan       | rohan@email.com  |
+|         5 | Suman       | suman@email.com  |
+|         6 | Pooja       | pooja@email.com  |
+|         7 | Aman        | aman@email.com   |
++-----------+-------------+------------------+
+7 rows in set (0.001 sec)
+
+mysql> SELECT * FROM Clubs;
++-------------+----------+------------+
+| ClubName    | ClubRoom | ClubMentor |
++-------------+----------+------------+
+| Coding Club | lab1     | Mr. Anil   |
+| Drama Club  | R303     | Mr. Kiran  |
+| Music Club  | R101     | Mr. Raman  |
+| Sports Club | R202     | Ms. Sita   |
++-------------+----------+------------+
+4 rows in set (0.001 sec)
+
+mysql> SELECT * FROM Memberships;
++-----------+-------------+------------+
+| StudentID | ClubName    | JoinDate   |
++-----------+-------------+------------+
+|         1 | Music Club  | 2024-01-10 |
+|         1 | Sports Club | 2024-01-15 |
+|         2 | Drama Club  | 2024-01-25 |
+|         2 | Sports Club | 2024-01-12 |
+|         3 | Coding Club | 2024-01-28 |
+|         3 | Music Club  | 2024-01-20 |
+|         4 | Drama Club  | 2024-01-18 |
+|         5 | Music Club  | 2024-01-22 |
+|         6 | Sports Club | 2024-01-27 |
+|         7 | Coding Club | 2024-01-30 |
++-----------+-------------+------------+
+10 rows in set (0.000 sec)
+```
 ### query to create db, table, insert date , show relust
 
