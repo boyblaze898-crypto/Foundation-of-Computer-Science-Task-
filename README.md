@@ -176,5 +176,64 @@ mysql> SELECT * FROM Memberships;
 +-----------+-------------+------------+
 10 rows in set (0.000 sec)
 ```
+### 3NF
+```
+The database is in 3NF because each table stores only one type of data (Students, Clubs, Memberships).
+
+
+In each table, every non-key column depends only on the primary key:
+Students: StudentName and Email depend on StudentID.
+Clubs: ClubRoom and ClubMentor depend on ClubName.
+Memberships: JoinDate depends on the combined key (StudentID, ClubName).
+
+
+There are no transitive dependencies (no non-key column depends on another non-key column).
+
+
+Because of this, updates happen in one place only, reducing redundancy and preventing insert/update/delete anomalies.
+
+3NF Table
+mysql> SELECT * FROM Students;
++-----------+-------------+------------------+
+| StudentID | StudentName | Email            |
++-----------+-------------+------------------+
+|         1 | Asha        | asha@email.com   |
+|         2 | Bikash      | bikash@email.com |
+|         3 | Nisha       | nisha@email.com  |
+|         4 | Rohan       | rohan@email.com  |
+|         5 | Suman       | suman@email.com  |
+|         6 | Pooja       | pooja@email.com  |
+|         7 | Aman        | aman@email.com   |
++-----------+-------------+------------------+
+7 rows in set (0.001 sec)
+
+mysql> SELECT * FROM Clubs;
++-------------+----------+------------+
+| ClubName    | ClubRoom | ClubMentor |
++-------------+----------+------------+
+| Coding Club | lab1     | Mr. Anil   |
+| Drama Club  | R303     | Mr. Kiran  |
+| Music Club  | R101     | Mr. Raman  |
+| Sports Club | R202     | Ms. Sita   |
++-------------+----------+------------+
+4 rows in set (0.001 sec)
+
+mysql> SELECT * FROM Memberships;
++-----------+-------------+------------+
+| StudentID | ClubName    | JoinDate   |
++-----------+-------------+------------+
+|         1 | Music Club  | 2024-01-10 |
+|         1 | Sports Club | 2024-01-15 |
+|         2 | Drama Club  | 2024-01-25 |
+|         2 | Sports Club | 2024-01-12 |
+|         3 | Coding Club | 2024-01-28 |
+|         3 | Music Club  | 2024-01-20 |
+|         4 | Drama Club  | 2024-01-18 |
+|         5 | Music Club  | 2024-01-22 |
+|         6 | Sports Club | 2024-01-27 |
+|         7 | Coding Club | 2024-01-30 |
++-----------+-------------+------------+
+10 rows in set (0.000 sec)
+```
 ### query to create db, table, insert date , show relust
 
